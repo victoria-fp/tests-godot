@@ -1,0 +1,128 @@
+[gd_scene load_steps=14 format=3 uid="uid://b2wdiyxhrnhrb"]
+
+[ext_resource type="Script" path="res://Scenes/test_animation.gd" id="4_hv5ix"]
+[ext_resource type="Script" path="res://Scenes/back_to_menu.gd" id="4_nf3dw"]
+[ext_resource type="Texture2D" uid="uid://bw5fgbih25fej" path="res://Images/Player/player.png" id="5_pem8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjmhd"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(88, 279, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4hm5"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(176, 279, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvyfw"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(264, 279, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y4x5"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(0, 0, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkmr2"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(88, 0, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ayqvx"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(176, 0, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w77hk"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(264, 0, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5w36"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(0, 93, 88, 93)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6kkx"]
+atlas = ExtResource("5_pem8w")
+region = Rect2(88, 93, 88, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kwxke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjmhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4hm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvyfw")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y4x5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkmr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ayqvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w77hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5w36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6kkx")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 7.0
+}]
+
+[node name="Level" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_nf3dw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 3.35
+anchor_bottom = 1.0
+offset_left = 936.0
+offset_top = 8.0
+offset_right = 936.0
+offset_bottom = 8.0
+scale = Vector2(1.48, 1.28)
+
+[node name="BackToMenuButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Retour au menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 360.0
+offset_bottom = 60.0
+grow_horizontal = 2
+scale = Vector2(1.84, 1.88)
+text = "Appuyez sur les touches WASD pour vous déplacer"
+fit_content = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(312, 448)
+script = ExtResource("4_hv5ix")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_kwxke")
+animation = &"Idle"
+
+[connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]

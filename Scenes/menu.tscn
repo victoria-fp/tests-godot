@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjesg78oem1se"]
+
+[ext_resource type="Script" path="res://Scenes/menu.gd" id="1_wp1dd"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wp1dd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -261.0
+offset_top = -74.0
+offset_right = 92.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.48, 1.48318)
+
+[node name="Button1" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Charger une scène vide"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Déplacement du personnage"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Animations"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Collisions (limites du terrain et personnages)"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_top = 21.0
+offset_right = -3.0
+offset_bottom = 71.0
+grow_horizontal = 2
+scale = Vector2(2.4, 2.24)
+text = "Tests Godot"
+fit_content = true
+scroll_active = false
+
+[connection signal="pressed" from="VBoxContainer/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
