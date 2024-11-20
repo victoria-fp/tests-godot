@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed : float = 200
 
 func handleInput():
-	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	var moveDirection = Input.get_vector("left","right","up","down")
 	velocity = moveDirection * speed
 	
 	if moveDirection.x > 0: # right

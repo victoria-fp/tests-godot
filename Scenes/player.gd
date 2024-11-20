@@ -4,37 +4,26 @@ var speed : float = 200
 var punch = false
 
 func handleInput():
-	var moveDirection = Input.get_vector("ui_left","ui_right","ui_up","ui_down")
+	var moveDirection = Input.get_vector("left","right","up","down")
 	velocity = moveDirection * speed
 	
-	if moveDirection.x > 0: # right
-		$AnimatedSprite2D.flip_h = false	
-	if moveDirection.x < 0: # left
-		$AnimatedSprite2D.flip_h = true
-	
-	if moveDirection.x == 0 && moveDirection.y == 0 :
-		$AnimatedSprite2D.play("Idle")
-	else:
-		$AnimatedSprite2D.play("Walk")
-		
-	if Input.is_action_just_pressed("ui_accept") :
+	# Gestion du coup de poing 
+	if Input.is_action_just_pressed("punch") :
+		punch = true
 		$AnimatedSprite2D.play("Punch")
-
-		
-	#if Input.is_action_just_pressed("ui_accept") and $AnimatedSprite2D.flip_h == false and punch == false :
-		#$AnimatedSprite2D.play("Punch")
-		#for body in $RightFist.get_overlapping_bodies():
-			#if(body.get_collision_layer() == 2):
-				#body.hurt()
-				#punch = true
-	#elif Input.is_action_just_pressed("ui_accept") and $AnimatedSprite2D.flip_h == true and punch == false :
-		#$AnimatedSprite2D.play("Punch")
-		#for body in $LeftFist.get_overlapping_bodies():
-			#if(body.get_collision_layer() == 2):
-				#body.hurt()
-				#punch = true
-	#else:
-		#punch = false
+	
+	# Gestion du déplacement
+	elif not Input.is_action_just_pressed("punch") and punch == false :
+		if moveDirection.x == 0 && moveDirection.y == 0 :
+			$AnimatedSprite2D.play("Idle")
+		else:
+			$AnimatedSprite2D.play("Walk")
+	
+	# flipper la sprite si on se déplace vers la droite
+	if moveDirection.x > 0: 
+		$AnimatedSprite2D.flip_h = false	
+	if moveDirection.x < 0:
+		$AnimatedSprite2D.flip_h = true
 
 
 func _physics_process(delta):
@@ -42,7 +31,18 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	$AnimatedSprite2D.play("Idle")
 	punch = false
+	
+	if $AnimatedSprite2D.flip_h == false :
+		for body in $RightFist.get_overlapping_bodies():
+			# jouer un son
+			if(body.get_collision_layer() == 2):
+				body.hurt()
+					
+	if $AnimatedSprite2D.flip_h == true :
+		for body in $LeftFist.get_overlapping_bodies():
+			# jouer un son
+			if(body.get_collision_layer() == 2):
+				body.hurt()
