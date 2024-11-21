@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://dx54ekb7rjgll"]
+[gd_scene load_steps=10 format=4 uid="uid://dx54ekb7rjgll"]
 
 [ext_resource type="Texture2D" uid="uid://2ddro45v06uj" path="res://Images/Background/background.png" id="1_k6e10"]
 [ext_resource type="PackedScene" uid="uid://xilpyp8fcb2j" path="res://Scenes/player.tscn" id="2_b1anf"]
 [ext_resource type="Texture2D" uid="uid://dlfwdf3mmmg68" path="res://icon.svg" id="3_pfigo"]
 [ext_resource type="Script" path="res://Scenes/back_to_menu.gd" id="4_vigsh"]
+[ext_resource type="PackedScene" uid="uid://dad2melexyhfc" path="res://Scenes/enemy.tscn" id="5_3m7qs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0njl7"]
 texture = ExtResource("3_pfigo")
@@ -25,15 +26,23 @@ texture = SubResource("CanvasTexture_4wvbe")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(954, 193)
+position = Vector2(1008, 193)
 scale = Vector2(2.76042, 4.13951)
 texture = ExtResource("1_k6e10")
 
 [node name="Player" parent="." instance=ExtResource("2_b1anf")]
 position = Vector2(80, 344)
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+limit_right = 2048
+limit_bottom = 648
+editor_draw_limits = true
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAA=")
+visible = false
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_j7xls")
 
 [node name="Control" type="Control" parent="."]
@@ -73,5 +82,11 @@ bbcode_enabled = true
 text = "- Essayez de sortir de l'écran
 - Appuyez sur les touches [color=#D62436]WASD[/color] pour vous déplacer"
 fit_content = true
+
+[node name="Enemy" parent="." instance=ExtResource("5_3m7qs")]
+position = Vector2(616, 528)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_3m7qs")]
+position = Vector2(1512, 408)
 
 [connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]

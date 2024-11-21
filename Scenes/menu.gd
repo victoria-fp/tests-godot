@@ -13,4 +13,8 @@ func _on_button_4_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/test_audio.tscn")
 	
 func _on_button_5_pressed() -> void:
-	get_tree().change_scene_to_file("res://Scenes/test_attack.tscn")	
+	get_tree().change_scene_to_file("res://Scenes/test_attack.tscn")
+
+
+func _on_button_6_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/test_camera.tscn")
