@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scenes/back_to_menu.gd" id="4_vigsh"]
 [ext_resource type="PackedScene" uid="uid://dad2melexyhfc" path="res://Scenes/enemy.tscn" id="5_3m7qs"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0njl7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t23tw"]
 texture = ExtResource("3_pfigo")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -15,7 +15,7 @@ texture_region_size = Vector2i(128, 128)
 [sub_resource type="TileSet" id="TileSet_j7xls"]
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 4
-sources/0 = SubResource("TileSetAtlasSource_0njl7")
+sources/0 = SubResource("TileSetAtlasSource_t23tw")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4wvbe"]
 
@@ -45,14 +45,22 @@ visible = false
 tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_j7xls")
 
-[node name="Control" type="Control" parent="."]
+[node name="Enemy" parent="." instance=ExtResource("5_3m7qs")]
+position = Vector2(616, 528)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_3m7qs")]
+position = Vector2(1512, 408)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_vigsh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 3.35
@@ -63,11 +71,11 @@ offset_right = 936.0
 offset_bottom = 8.0
 scale = Vector2(1.48, 1.28)
 
-[node name="BackToMenuButton" type="Button" parent="Control/VBoxContainer"]
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
 text = "Retour au menu"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -83,10 +91,4 @@ text = "- Essayez de sortir de l'écran
 - Appuyez sur les touches [color=#D62436]WASD[/color] pour vous déplacer"
 fit_content = true
 
-[node name="Enemy" parent="." instance=ExtResource("5_3m7qs")]
-position = Vector2(616, 528)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_3m7qs")]
-position = Vector2(1512, 408)
-
-[connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/BackToMenuButton" to="CanvasLayer/Control" method="_on_back_to_menu_button_pressed"]

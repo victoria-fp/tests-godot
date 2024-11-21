@@ -47,3 +47,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 			# jouer un son
 			if(body.get_collision_layer() == 2):
 				body.hurt()
+				
+				
+func bell_sound() :
+	$BellSound.play()

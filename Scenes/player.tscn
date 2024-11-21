@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://xilpyp8fcb2j"]
+[gd_scene load_steps=21 format=3 uid="uid://xilpyp8fcb2j"]
 
 [ext_resource type="Texture2D" uid="uid://bw5fgbih25fej" path="res://Images/Player/player.png" id="1_1l72s"]
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_nys1e"]
 [ext_resource type="AudioStream" uid="uid://c44yw5ncn27os" path="res://Audio/punch.wav" id="3_fkikl"]
+[ext_resource type="AudioStream" uid="uid://lcjrdoowq702" path="res://Audio/bell.wav" id="4_md0nh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjmhd"]
 atlas = ExtResource("1_1l72s")
@@ -151,5 +152,8 @@ shape = SubResource("RectangleShape2D_21hsf")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fkikl")
+
+[node name="BellSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_md0nh")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

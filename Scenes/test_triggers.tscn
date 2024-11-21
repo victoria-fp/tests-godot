@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=4 uid="uid://dm3fgheidlv83"]
+
+[ext_resource type="PackedScene" uid="uid://xilpyp8fcb2j" path="res://Scenes/player.tscn" id="2_bnf26"]
+[ext_resource type="Texture2D" uid="uid://dlfwdf3mmmg68" path="res://icon.svg" id="3_ropvm"]
+[ext_resource type="Script" path="res://Scenes/back_to_menu.gd" id="4_twrb8"]
+[ext_resource type="PackedScene" uid="uid://cacpxrt58wee5" path="res://Scenes/healing_item.tscn" id="5_25jsa"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5642m"]
+texture = ExtResource("3_ropvm")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_mmb44"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 4
+sources/0 = SubResource("TileSetAtlasSource_5642m")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4wvbe"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmxil"]
+texture = SubResource("CanvasTexture_4wvbe")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_bnf26")]
+position = Vector2(80, 344)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+visible = false
+tile_map_data = PackedByteArray("AAD//wEAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAAKAAUAAAAAAAAAAAALAAUAAAAAAAAAAAAMAAUAAAAAAAAAAAANAAUAAAAAAAAAAAAOAAUAAAAAAAAAAAAPAAUAAAAAAAAAAAAKAAEAAAAAAAAAAAALAAEAAAAAAAAAAAAMAAEAAAAAAAAAAAANAAEAAAAAAAAAAAAOAAEAAAAAAAAAAAAPAAEAAAAAAAAAAAAQAAEAAAAAAAAAAAAQAAIAAAAAAAAAAAAQAAMAAAAAAAAAAAAQAAQAAAAAAAAAAAAQAAUAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_mmb44")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_twrb8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 3.35
+anchor_bottom = 1.0
+offset_left = 936.0
+offset_top = 8.0
+offset_right = 936.0
+offset_bottom = 8.0
+scale = Vector2(1.48, 1.28)
+
+[node name="BackToMenuButton" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+text = "Retour au menu"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 360.0
+offset_bottom = 60.0
+grow_horizontal = 2
+scale = Vector2(1.76, 1.76)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxTexture_xmxil")
+bbcode_enabled = true
+text = "- Entrez en contact avec un objet pour le ramasser
+- Appuyez sur les touches [color=#D62436]WASD[/color] pour vous déplacer"
+fit_content = true
+
+[node name="HealingItem" parent="." instance=ExtResource("5_25jsa")]
+position = Vector2(304, 408)
+
+[node name="HealingItem2" parent="." instance=ExtResource("5_25jsa")]
+position = Vector2(664, 480)
+
+[node name="HealingItem3" parent="." instance=ExtResource("5_25jsa")]
+position = Vector2(904, 424)
+
+[connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]
