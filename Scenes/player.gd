@@ -11,6 +11,7 @@ func handleInput():
 	if Input.is_action_just_pressed("punch") :
 		punch = true
 		$AnimatedSprite2D.play("Punch")
+		$AudioStreamPlayer2D.play()
 	
 	# Gestion du déplacement
 	elif not Input.is_action_just_pressed("punch") and punch == false :

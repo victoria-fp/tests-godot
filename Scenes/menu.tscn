@@ -45,6 +45,12 @@ text = "Animations"
 [node name="Button4" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
+size_flags_vertical = 3
+text = "Musique et effet sonore"
+
+[node name="Button5" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 text = "Collisions (limites du terrain et personnages)"
@@ -68,3 +74,4 @@ scroll_active = false
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button5" to="." method="_on_button_5_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dad2melexyhfc"]
+[gd_scene load_steps=7 format=3 uid="uid://dad2melexyhfc"]
 
 [ext_resource type="Script" path="res://Scenes/enemy.gd" id="1_kip8p"]
 [ext_resource type="Texture2D" uid="uid://diwd1pslhw0bi" path="res://Images/Enemy/enemy.png" id="2_ilrwf"]
+[ext_resource type="AudioStream" uid="uid://dc456lrj35m78" path="res://Audio/hurt.wav" id="3_1hq4u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gh2tt"]
 atlas = ExtResource("2_ilrwf")
@@ -34,3 +35,8 @@ sprite_frames = SubResource("SpriteFrames_hc05d")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
 shape = SubResource("RectangleShape2D_g4j3x")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1hq4u")
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

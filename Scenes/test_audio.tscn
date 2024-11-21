@@ -1,11 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjcv1rsphe1pd"]
+[gd_scene load_steps=4 format=3 uid="uid://cjcv1rsphe1pd"]
 
 [ext_resource type="Script" path="res://Scenes/back_to_menu.gd" id="1_owot8"]
 [ext_resource type="PackedScene" uid="uid://xilpyp8fcb2j" path="res://Scenes/player.tscn" id="2_vl16p"]
-[ext_resource type="AudioStream" uid="uid://c44yw5ncn27os" path="res://Audio/punch.wav" id="3_5rkvy"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_llic7"]
-size = Vector2(64, 128)
+[ext_resource type="AudioStream" uid="uid://cykxo138odba5" path="res://Audio/bgm.wav" id="3_j7fw4"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -39,17 +36,16 @@ offset_right = 360.0
 offset_bottom = 60.0
 grow_horizontal = 2
 scale = Vector2(1.84, 1.88)
-text = "Appuyez sur les touches WASD pour vous déplacer"
+theme_override_font_sizes/normal_font_size = 12
+text = "- Appuyez sur J pour attaquer
+- Appuyez sur les touches WASD pour vous déplacer"
 fit_content = true
 
 [node name="Player" parent="." instance=ExtResource("2_vl16p")]
 position = Vector2(456, 312)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(744, 312)
-texture = SubResource("PlaceholderTexture2D_llic7")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_5rkvy")
+stream = ExtResource("3_j7fw4")
+autoplay = true
 
 [connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]

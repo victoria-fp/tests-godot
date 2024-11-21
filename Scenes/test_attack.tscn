@@ -33,6 +33,9 @@ texture = ExtResource("1_eki2a")
 [node name="Player" parent="." instance=ExtResource("2_311t8")]
 position = Vector2(552, 456)
 
+[node name="Enemy" parent="." instance=ExtResource("5_svswo")]
+position = Vector2(912, 480)
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 visible = false
 tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAA=")
@@ -76,8 +79,5 @@ text = "- Essayez de vous rendre au mur ou de sortir de l'écran
 - Appuyez sur [color=#D62436]J[/color] pour attaquer 
 - Appuyez sur les touches [color=#D62436]WASD[/color] pour vous déplacer"
 fit_content = true
-
-[node name="Enemy" parent="." instance=ExtResource("5_svswo")]
-position = Vector2(912, 480)
 
 [connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]
