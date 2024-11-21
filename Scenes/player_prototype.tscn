@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvcol6y2o33hd"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gcafo"]
-size = Vector2(64, 64)
-
-[node name="PlayerPrototype" type="CharacterBody2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("PlaceholderTexture2D_gcafo")

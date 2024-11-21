@@ -120,6 +120,7 @@ size = Vector2(51, 97)
 size = Vector2(51, 97)
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 position = Vector2(640, 312)
 collision_mask = 4
 script = ExtResource("1_nys1e")
@@ -129,9 +130,10 @@ texture_filter = 1
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_i4f0e")
 animation = &"Punch"
+offset = Vector2(0, -35)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-8, 0)
+position = Vector2(-8, -75)
 shape = SubResource("RectangleShape2D_3idd6")
 
 [node name="RightFist" type="Area2D" parent="."]
@@ -139,7 +141,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightFist"]
-position = Vector2(46.5, -9.5)
+position = Vector2(46.5, -85)
 shape = SubResource("RectangleShape2D_ufeik")
 
 [node name="LeftFist" type="Area2D" parent="."]
@@ -147,7 +149,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftFist"]
-position = Vector2(-63, -10)
+position = Vector2(-63, -85)
 shape = SubResource("RectangleShape2D_21hsf")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

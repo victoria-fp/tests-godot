@@ -23,6 +23,7 @@ sources/0 = SubResource("TileSetAtlasSource_t23tw")
 texture = SubResource("CanvasTexture_4wvbe")
 
 [node name="Node2D" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1

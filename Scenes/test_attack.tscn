@@ -23,6 +23,7 @@ sources/0 = SubResource("TileSetAtlasSource_ssxih")
 texture = SubResource("CanvasTexture_4wvbe")
 
 [node name="Level" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -41,14 +42,16 @@ visible = false
 tile_map_data = PackedByteArray("AAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAHAAEAAAAAAAAAAAAIAAEAAAAAAAAAAAAJAAEAAAAAAAAAAAAJAAIAAAAAAAAAAAAJAAMAAAAAAAAAAAAJAAQAAAAAAAAAAAAJAAUAAAAAAAAAAAAIAAUAAAAAAAAAAAAHAAUAAAAAAAAAAAAGAAUAAAAAAAAAAAAFAAUAAAAAAAAAAAAEAAUAAAAAAAAAAAADAAUAAAAAAAAAAAACAAUAAAAAAAAAAAABAAUAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAEAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_sv5id")
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_1rwg8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 3.35
@@ -59,11 +62,11 @@ offset_right = 936.0
 offset_bottom = 8.0
 scale = Vector2(1.48, 1.28)
 
-[node name="BackToMenuButton" type="Button" parent="Control/VBoxContainer"]
+[node name="BackToMenuButton" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
 text = "Retour au menu"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -80,4 +83,4 @@ text = "- Essayez de vous rendre au mur ou de sortir de l'écran
 - Appuyez sur les touches [color=#D62436]WASD[/color] pour vous déplacer"
 fit_content = true
 
-[connection signal="pressed" from="Control/VBoxContainer/BackToMenuButton" to="Control" method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/BackToMenuButton" to="CanvasLayer/Control" method="_on_back_to_menu_button_pressed"]
